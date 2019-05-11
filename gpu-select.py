@@ -51,7 +51,7 @@ def main():
 
     confirm = input('Confirm switch to ' + sys.argv[1] + '?[y/n]: ')
     if confirm == 'y':
-        os.system('sudo mv grub /etc/default/grub')
+        os.system('sudo mv ' + new_grub_path + ' /etc/default/grub')
         os.system('sudo grub2-mkconfig -o /boot/efi/EFI/fedora/grub.cfg')
 
 
