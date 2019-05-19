@@ -8,51 +8,60 @@ intel = 'GRUB_CMDLINE_LINUX=\"resume=/dev/mapper/fedora-swap rd.lvm.lv=fedora/ro
 new_grub_path = os.getenv('HOME') + '/grub'
 
 
-def select(gpu, old_grub, new_grub, debug):
+def select(gpu, grub, debug):
     if gpu != 'nvidia' and gpu != 'intel':
-        print('Invalid GPU')
+        raise Exception('Invalid GPU')
 
-    temp = ''
+    newcfg = ''
     oldcfg = ''
     grubcfg = intel if gpu == 'intel' else nvidia
 
-    for line in old_grub:
+    for line in grub:
         if line.find('GRUB_CMDLINE_LINUX=') != -1:
-            temp += grubcfg
+            newcfg += grubcfg
         else:
-            temp += line
+            newcfg += line
         oldcfg += line
 
     if debug:
         print('Old Grub\n')
         print(oldcfg)
         print('\n\nNew Grub \n')
-        print(temp)
+        print(newcfg)
 
-    new_grub.write(temp)
+    return newcfg, oldcfg
+
+
+def backup(cfg, debug):
+    backup_path = os.getenv('HOME') + '/grub.old'
+    backup = open(backup_path, 'w+')
+    backup.write(cfg)
+    backup.close()
 
 
 def main():
     if len(sys.argv) == 1:
-        print('Too few args')
-        return
+        raise Exception('Too few args')
 
-    old_grub = open('/etc/default/grub', 'r')
-    new_grub = open(new_grub_path, 'w+')
+    grub = open('/etc/default/grub', 'r+')
     debug = False
 
     if debug:
         print(sys.argv)
         print('Arg Length: ', len(sys.argv), '\n')
 
-    select(sys.argv[1], old_grub, new_grub, debug)
-    old_grub.close()
-    new_grub.close()
-
+    newcfg, oldcfg = select(sys.argv[1], grub, debug)
     confirm = input('Confirm switch to ' + sys.argv[1] + '?[y/n]: ')
+
     if confirm == 'y':
-        os.system('sudo mv ' + new_grub_path + ' /etc/default/grub')
+        backup(oldcfg, debug)
+        grub.seek(0)
+        grub.write(newcfg)
+        grub.truncate()
+        grub.close()
         os.system('sudo grub2-mkconfig -o /boot/efi/EFI/fedora/grub.cfg')
+    else:
+        grub.close()
 
 
 if __name__ == '__main__':
