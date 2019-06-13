@@ -1,4 +1,6 @@
-# Note install powertop2tuned before doing this
+# sudo dnf install tuned-utils 
+# sudo powertop2tuned -n laptop
+#
 # Paste this below into configuration file
 #
 # /sys/devices/system/cpu/cpufreq/policy?/energy_performance_preference=balance_power
