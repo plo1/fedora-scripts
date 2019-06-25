@@ -31,7 +31,6 @@ def select(gpu, grub, debug):
 
     return newcfg, oldcfg
 
-
 def backup(cfg, debug):
     backup_path = os.getenv('HOME') + '/grub.old'
     backup = open(backup_path, 'w+')
