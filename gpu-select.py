@@ -3,9 +3,19 @@
 import sys
 import os
 
-nvidia = 'GRUB_CMDLINE_LINUX=\"rd.driver.blacklist=nouveau modprobe.blacklist=nouveau nvidia-drm.modeset=1 resume=/dev/mapper/fedora-swap rd.lvm.lv=fedora/root rd.lvm.lv=fedora/swap rhgb quiet\"\n'
-intel = 'GRUB_CMDLINE_LINUX=\"resume=/dev/mapper/fedora-swap rd.lvm.lv=fedora/root rd.lvm.lv=fedora/swap rhgb quiet\"\n'
+nvidia = 'rd.driver.blacklist=nouveau modprobe.blacklist=nouveau nvidia-drm.modeset=1'
 new_grub_path = os.getenv('HOME') + '/grub'
+
+
+def edit(gpu, line):
+    if gpu == 'intel':
+        return line.replace(nvidia, '')
+
+    # gpu is nvidia
+    if line.find(nvidia) is not -1:
+        return line
+    else:
+        return '\"' + nvidia + line[1:]
 
 
 def select(gpu, grub, debug):
@@ -14,11 +24,12 @@ def select(gpu, grub, debug):
 
     newcfg = ''
     oldcfg = ''
-    grubcfg = intel if gpu == 'intel' else nvidia
+    cmdline_linux = 'GRUB_CMDLINE_LINUX='
 
     for line in grub:
-        if line.find('GRUB_CMDLINE_LINUX=') != -1:
-            newcfg += grubcfg
+        prefix_found = False if line.find(cmdline_linux) is -1 else True
+        if prefix_found:
+            newcfg += edit(gpu, line)
         else:
             newcfg += line
         oldcfg += line
@@ -50,7 +61,7 @@ def main():
         print('Arg Length: ', len(sys.argv), '\n')
 
     newcfg, oldcfg = select(sys.argv[1], grub, debug)
-    confirm = input('Confirm switch to ' + sys.argv[1] + '?[y/n]: ')
+    confirm = input('Confirm switch to ' + sys.argv[1] + '? [y/n]: ')
 
     if confirm == 'y':
         backup(oldcfg, debug)
