@@ -3,8 +3,12 @@
 import sys
 import os
 
-nvidia = 'rd.driver.blacklist=nouveau modprobe.blacklist=nouveau nvidia-drm.modeset=1'
-new_grub_path = os.getenv('HOME') + '/grub'
+'''Make Sure to copy this file to /usr/local/bin'''
+
+nvidia = 'rd.driver.blacklist=nouveau modprobe.blacklist=nouveau ' \
+    'nvidia-drm.modeset=1 '
+backup_path = os.getenv('HOME') + '/grub.old'
+grub_path = '/etc/default/grub'
 
 
 def edit(gpu, line):
@@ -23,49 +27,37 @@ def select(gpu, grub):
         raise Exception('Invalid GPU')
 
     newcfg = ''
-    oldcfg = ''
     cmdline_linux = 'GRUB_CMDLINE_LINUX='
 
-    for line in grub:
+    for line in grub.splitlines():
         if line.find(cmdline_linux) is not -1:
-            newcfg += cmdline_linux + edit(gpu, line[len(cmdline_linux):])
+            newcfg += cmdline_linux + edit(gpu, line[len(cmdline_linux):]) \
+                + '\n'
         else:
-            newcfg += line
-        oldcfg += line
+            newcfg += line + '\n'
 
-    return newcfg, oldcfg
+    return newcfg
 
 
-def backup(cfg):
-    backup_path = os.getenv('HOME') + '/grub.old'
-    backup_file = open(backup_path, 'w+')
-    backup_file.write(cfg)
-    backup_file.close()
+def backup():
+    with open(grub_path, 'r') as f1, open(backup_path, 'w+') as f2:
+        f2.write(f1.read())
 
 
 def main():
-    if len(sys.argv) == 1:
+    if len(sys.argv) <= 1:
         raise Exception('Too few args')
 
-    grub = open('/etc/default/grub', 'r+')
-    debug = False
-
-    if debug:
-        print(sys.argv)
-        print('Arg Length: ', len(sys.argv), '\n')
-
-    newcfg, oldcfg = select(sys.argv[1], grub, debug)
     confirm = input('Confirm switch to ' + sys.argv[1] + '? [y/n]: ')
-
     if confirm == 'y':
-        backup(oldcfg)
-        grub.seek(0)
-        grub.write(newcfg)
-        grub.truncate()
-        grub.close()
-        os.system('sudo grub2-mkconfig -o /boot/efi/EFI/fedora/grub.cfg')
-    else:
-        grub.close()
+        with open(grub_path, 'r+') as grub:
+            temp = grub.read()
+            newcfg = select(sys.argv[1], temp)
+            backup()
+            grub.seek(0)
+            grub.write(newcfg)
+            grub.truncate()
+            os.system('sudo grub2-mkconfig -o /boot/efi/EFI/fedora/grub.cfg')
 
 
 if __name__ == '__main__':
