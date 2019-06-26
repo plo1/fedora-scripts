@@ -1,0 +1,5 @@
+# emacs backup
+*.*~
+
+# pycache directories
+__pycache__/
