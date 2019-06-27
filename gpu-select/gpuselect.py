@@ -17,31 +17,38 @@ def edit(gpu, line):
 
     # gpu == 'nvidia'
     if line.find(nvidia) is -1:
-        return '\"' + nvidia + line[1:]
+        return line[:1] + nvidia + line[1:]
     else:
         return line
 
 
-def select(gpu, grub):
+def select(gpu, path):
     if gpu != 'nvidia' and gpu != 'intel':
         raise Exception('Invalid GPU')
 
     newcfg = ''
-    cmdline_linux = 'GRUB_CMDLINE_LINUX='
+    oldcfg = ''
+    prefix = 'GRUB_CMDLINE_LINUX='
 
-    for line in grub.splitlines():
-        if line.find(cmdline_linux) is not -1:
-            newcfg += cmdline_linux + edit(gpu, line[len(cmdline_linux):]) \
-                + '\n'
-        else:
-            newcfg += line + '\n'
+    with open(path, 'r') as f:
+        for line in f:
+            if line.find(prefix) is not -1:
+                newcfg += prefix + edit(gpu, line[len(prefix):])
+            else:
+                newcfg += line
+            oldcfg += line
 
-    return newcfg
+    return newcfg, oldcfg
 
 
-def backup():
-    with open(grub_path, 'r') as f1, open(backup_path, 'w+') as f2:
-        f2.write(f1.read())
+def write(cfg):
+    with open(grub_path, 'w') as f:
+        f.write(cfg)
+
+
+def backup(cfg):
+    with open(backup_path, 'w+') as f:
+        f.write(cfg)
 
 
 def main():
@@ -50,14 +57,10 @@ def main():
 
     confirm = input('Confirm switch to ' + sys.argv[1] + '? [y/n]: ')
     if confirm == 'y':
-        with open(grub_path, 'r+') as grub:
-            temp = grub.read()
-            newcfg = select(sys.argv[1], temp)
-            backup()
-            grub.seek(0)
-            grub.write(newcfg)
-            grub.truncate()
-            os.system('sudo grub2-mkconfig -o /boot/efi/EFI/fedora/grub.cfg')
+        newcfg, oldcfg = select(sys.argv[1], grub_path)
+        backup(oldcfg)
+        write(newcfg)
+        os.system('sudo grub2-mkconfig -o /boot/efi/EFI/fedora/grub.cfg')
 
 
 if __name__ == '__main__':
