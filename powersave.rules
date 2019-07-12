@@ -1,14 +1,3 @@
-# sudo dnf install tuned-utils 
-# sudo powertop2tuned -n laptop
-#
-# Paste this below into configuration file
-#
-# /sys/devices/system/cpu/cpufreq/policy?/energy_performance_preference=balance_power
-#
-# [cpu]
-# energy_perf_bias=power
-
-
 SUBSYSTEM=="power_supply", ATTR{status}=="Discharging", RUN+="/usr/sbin/tuned-adm profile laptop"
 SUBSYSTEM=="power_supply", ATTR{status}=="Charging", RUN+="/usr/sbin/tuned-adm profile desktop"
 SUBSYSTEM=="power_supply", ATTR{status}=="Full", RUN+="/usr/sbin/tuned-adm profile desktop"
