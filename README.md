@@ -36,10 +36,10 @@ Contains my setup for controlling nVidia Optimus and instruction for enabling po
 5. Enable your configuration and test it (i.e. restart, shutdown, sleep, run apps).
 
     `sudo tuned-adm profile laptop`
-   
+    
 6. If there are no problems then allow tuned to run on system start.
    
-   `systemctl enable tuned`
+    `systemctl enable tuned`
 
 7. Create a udev rule to enable the laptop profile when the system is unplugged and to enable the 
    Desktop profile when the system is plugged in. I already created the udev rule in the repo, all 
@@ -59,11 +59,11 @@ with out of order parameters in **GRUB_CMDLINE_LINUX=**, the script may not work
 
 ### How it works
 `gpuselect.py` reads the grub file in `/etc/default/grub`, and looks for 
-**rd.driver.blacklist=nouveau modprobe.blacklist=nouveau nvidia-drm.modeset=1** substring in the
-**GRUB_CMDLINE_LINUX=** parameters. If the selected gpu is **intel** and the substring is found
-the substring will be removed from parameters. If the selected gpu is **nvidia** and the substring 
-isn't found then the substring will be inserted into the beginning of the parameter. In all other
-cases, nothing is done.
+"rd.driver.blacklist=nouveau modprobe.blacklist=nouveau nvidia-drm.modeset=1" substring in the
+**GRUB_CMDLINE_LINUX=** parameters. If the selected gpu is intel and the substring is found,
+then substring will be removed from the grub parameters. If the selected gpu is nvidia and the substring 
+**is not** found then the substring will be inserted into the beginning of the grub parameter. Nothing
+done in all other cases.
 
 ### How to use
 1. Copy `gpuselect.py` to your PATH. In my case,
