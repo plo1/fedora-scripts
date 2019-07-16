@@ -84,5 +84,5 @@ Note: This script only works for computers with optimus technology
 
 ## Credits
 The powertop2tuned guide detailed above was based off [this reddit post](https://www.reddit.com/r/Fedora/comments/5pueys/how_to_save_power_with_your_laptop_running_fedora/). 
-Most instructions are the same as the original poster, the difference was in the udev rules file. 
+Most instructions are the same as the original poster, the difference is the udev rules file. 
 The idea for `gpuselect.py` came from automating the instructions on the [RPM Fusion HowTo guide for Optimus](https://rpmfusion.org/Howto/NVIDIA?highlight=%28CategoryHowto%29#Optimus)
