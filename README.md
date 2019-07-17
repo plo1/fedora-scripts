@@ -1,7 +1,11 @@
 # Fedora-Scripts
+
 Contains my setup for controlling nVidia Optimus and instruction for enabling powersaving features.
 
+**Note: For Fedora only**
+
 ## Dependencies
+
 - powertop2tuned
   - `powertop`
   - `tuned-utils`
@@ -9,6 +13,7 @@ Contains my setup for controlling nVidia Optimus and instruction for enabling po
   - `python3`
 
 ## powertop2tuned
+
 1. Download `powertop` and `tuned-utils`.
 
         sudo dnf install powertop tuned-utils
@@ -50,6 +55,7 @@ Contains my setup for controlling nVidia Optimus and instruction for enabling po
 8. Restart your computer to see the results in powertop.
 
 ## gpuselect
+
 ### Goal
 To imitate the function of prime-select in Ubuntu since prime-select doesn't
 exist for Fedora. The gpu-select folder includes the `gpuselect.py`, used for the gpu switching, and
@@ -66,6 +72,7 @@ then substring will be removed from the grub parameters. If the selected gpu is 
 done in all other cases.
 
 ### How to use
+
 1. Copy `gpuselect.py` to your PATH. In my case,
 
         sudo cp gpuselect.py /usr/local/bin
@@ -81,7 +88,13 @@ done in all other cases.
 
 Note: This script only works for computers with optimus technology
 
+## Shortcuts
+
+Just a bunch of shortcuts that I use. Copy into `/home/philip/.local/share/applications/` after installing
+said apps.
+
 ## Credits
+
 The powertop2tuned guide detailed above was based off [this reddit post](https://www.reddit.com/r/Fedora/comments/5pueys/how_to_save_power_with_your_laptop_running_fedora/). 
 Most instructions are the same as the original poster, the difference is the udev rules file. 
 The idea for `gpuselect.py` came from automating the instructions on the [RPM Fusion HowTo guide for Optimus](https://rpmfusion.org/Howto/NVIDIA?highlight=%28CategoryHowto%29#Optimus)
