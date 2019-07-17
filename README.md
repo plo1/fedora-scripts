@@ -3,27 +3,27 @@ Contains my setup for controlling nVidia Optimus and instruction for enabling po
 
 ## Dependencies
 - powertop2tuned
-    - `powertop`
-    - `tuned-utils`
+  - `powertop`
+  - `tuned-utils`
 - gpuselect
-    - `python3`
+  - `python3`
 
 ## powertop2tuned
 1. Download `powertop` and `tuned-utils`.
 
-    `sudo dnf install powertop tuned-utils`
+        sudo dnf install powertop tuned-utils
 
 2. Create a powersaving profile for your laptop.
-    
-    `sudo powertop2tuned -n laptop`
+
+        sudo powertop2tuned -n laptop
 
 3. Go to `/etc/tuned/laptop/tuned.conf`, this file contains commented lines for tweaking
    power usage. Uncommenting some lines will cause system instability, use at your own risk.
 
-    `sudo vi /etc/tuned/laptop/tuned.conf`
+        sudo vi /etc/tuned/laptop/tuned.conf
 
 4. For my specific case, I add the following lines before the line `[powertop_script]` in my `tuned.conf` file.
-    
+
         # CPU energy performance preference
         /sys/devices/system/cpu/cpufreq/policy?/energy_performance_preference=balance_power
 
@@ -32,20 +32,20 @@ Contains my setup for controlling nVidia Optimus and instruction for enabling po
 
         [usb]
         autosuspend=1
-        
+
 5. Enable your configuration and test it (i.e. restart, shutdown, sleep, run apps).
 
-    `sudo tuned-adm profile laptop`
+        sudo tuned-adm profile laptop
     
 6. If there are no problems then allow tuned to run on system start.
-   
-    `systemctl enable tuned`
+
+        systemctl enable tuned
 
 7. Create a udev rule to enable the laptop profile when the system is unplugged and to enable the 
    Desktop profile when the system is plugged in. I already created the udev rule in the repo, all 
    you need to do is copy `powersave.rules` into `/etc/udev/rules.d/`
 
-    `sudo cp powersave.rules /etc/udev/rules.d/`
+        sudo cp powersave.rules /etc/udev/rules.d/
 
 8. Restart your computer to see the results in powertop.
 
@@ -68,13 +68,12 @@ done in all other cases.
 ### How to use
 1. Copy `gpuselect.py` to your PATH. In my case,
 
-    `sudo cp gpuselect.py /usr/local/bin`
+        sudo cp gpuselect.py /usr/local/bin
 
 2. Whenever you need to switch the gpu.
 
         # To use integrated graphics
         sudo gpuselect.py intel
-
         # To use nvidia graphics
         sudo gpuselect.py nvidia
 
