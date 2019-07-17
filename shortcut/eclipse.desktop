@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=Eclipse 
+Type=Application
+Exec=/home/philip/eclipse/java-2019-06/eclipse/eclipse
+Terminal=false
+Icon=/home/philip/eclipse/java-2019-06/eclipse/icon.xpm
+Comment=Integrated Development Environment
+NoDisplay=false
+Categories=Development;IDE;
+Name[en]=Eclipse
