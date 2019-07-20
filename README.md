@@ -88,10 +88,15 @@ done in all other cases.
 
 Note: This script only works for computers with optimus technology
 
-## Shortcuts
+## icon
 
-Just a bunch of shortcuts that I use. Copy into `/home/philip/.local/share/applications/` after installing
-said apps.
+icon.py is a script that creates icons for common apps I use. Icons are created in 
+`$HOME/.local/share/applications/`
+
+    # To add icon one by one and see each file contents
+    python3 icon.py
+    # For batch adding all icons at once
+    python3 icon.py -a
 
 ## Credits
 
