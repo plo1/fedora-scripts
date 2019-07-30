@@ -6,6 +6,7 @@ class TestGPUSelect(unittest.TestCase):
     """Documentation for TestGPUSelect
 
     """
+
     def setUp(self):
         self.maxDiff = None
         self.path_nvidia = 'grub_nvidia'
