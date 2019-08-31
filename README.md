@@ -8,22 +8,28 @@ Contains my setup for my computer
 
 - [Dependencies](#dependencies)
 - [powertop2tuned](#powertop2tuned)
+  - [Dependencies](#Dependencies)
+  - [Setup/Usage](#Setup/Usage)
 - [gpuselect](#gpuselect)
   - [Goal](#goal)
   - [How it works](#how-it-works)
   - [Setup/Usage](#Setup/Usage)
 - [icons](#icons)
-- [Credits](#credits)
+- [credits](#credits)
 
-## Dependencies
+
+
+## powertop2tuned
+
+### Dependencies
 
 - powertop2tuned
   - `powertop`
   - `tuned-utils`
-- gpuselect
+- gpuselect.py
   - `python3`
-
-## powertop2tuned
+  
+### Setup/Usage
 
 1. Download `powertop` and `tuned-utils`.
 
@@ -109,7 +115,7 @@ icon.py is a script that creates icons for common apps I use. Icons are created 
     # For batch adding all icons at once
     python3 icon.py -a
 
-## Credits
+## credits
 
 The powertop2tuned guide detailed above was based off [this reddit post](https://www.reddit.com/r/Fedora/comments/5pueys/how_to_save_power_with_your_laptop_running_fedora/). 
 Most instructions are the same as the original poster, the difference is the udev rules file. 
