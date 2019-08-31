@@ -2,34 +2,24 @@
 
 Contains my setup for my computer
 
-**Note: For Fedora only**
+**Note: Package names are Fedora specific**
 
 ## Table of Contents
 
-- [Dependencies](#dependencies)
 - [powertop2tuned](#powertop2tuned)
-  - [Dependencies](#Dependencies)
-  - [Setup/Usage](#Setup/Usage)
 - [gpuselect](#gpuselect)
   - [Goal](#goal)
   - [How it works](#how-it-works)
-  - [Setup/Usage](#Setup/Usage)
-- [icons](#icons)
-- [credits](#credits)
-
-
+  - [Usage](#Usage)
+- [Editors](#Editors)
+  - [System Dependencies](#System-Depedencies)
+  - [Emacs](#Emacs)
+  - [Sublime](#Sublime)
+  - [List of Plugins](#List-of-Plugins)
+- [Icons](#Icons)
+- [Credits](#Credits)
 
 ## powertop2tuned
-
-### Dependencies
-
-- powertop2tuned
-  - `powertop`
-  - `tuned-utils`
-- gpuselect.py
-  - `python3`
-  
-### Setup/Usage
 
 1. Download `powertop` and `tuned-utils`.
 
@@ -88,7 +78,7 @@ then substring will be removed from the grub parameters. If the selected gpu is 
 **is not** found then the substring will be inserted into the beginning of the grub parameter. Nothing
 done in all other cases.
 
-### Setup/Usage
+### Usage
 
 1. Copy `gpuselect.py` to your PATH. In my case,
 
@@ -105,7 +95,60 @@ done in all other cases.
 
 Note: This script only works for computers with optimus technology
 
-## icons
+## Editors
+
+### System Dependencies
+
+    # For irony-mode
+    sudo dnf install gcc gcc-c++ make cmake clang-devel llvm-devel
+    # For pdf-tools
+    sudo dnf install automake autoconf gcc gcc-c++ ImageMagick libpng-devel zlib-devel poppler-glib-devel
+    # For auctex
+    sudo dnf install texlive-scheme-basic
+
+### Emacs
+
+1. Install system dependencies
+2. Copy `Emacs/.emacs` file to `/home/$USER/` directory
+3. Start Emacs
+
+### Sublime
+
+1. Install system dependencies
+2. [Install Package Control](https://packagecontrol.io/installation)
+3. Copy `Sublime/Users` folder to `/home/$USER/.config/sublime-text-3/Packages` directory
+4. Start Sublime Text 3
+
+### List of Plugins
+
+- Emacs
+  - Ease of Use
+    - [multiple-cursor-mode](https://github.com/magnars/multiple-cursors.el), [vlf](https://github.com/m00natic/vlfi),
+      [company](http://company-mode.github.io/), [yasnippet](https://github.com/joaotavora/yasnippet), 
+      [yasnippet-snippets](https://github.com/AndreaCrotti/yasnippet-snippets), [helm](https://github.com/emacs-helm/helm)
+  - Python
+    - [anaconda-mode](https://github.com/proofit404/anaconda-mode), [company-anaconda](https://github.com/proofit404/company-anaconda)
+  - C/C++
+    - [irony-mode](https://github.com/Sarcasm/irony-mode), [company-irony](https://github.com/Sarcasm/company-irony), 
+      [company-irony-c-headers](https://github.com/hotpxl/company-irony-c-headers)
+  - HTML
+    - [emmet-mode](https://github.com/smihica/emmet-mode)
+      [impatient-mode](https://github.com/skeeto/impatient-mode), [company-web](https://github.com/osv/company-web)
+  - Markdown
+    - [markdown-mode](https://github.com/jrblevin/markdown-mode/tree/115f77df9755c6a453f3e5d9623ff885d207ea82)
+  - Latex
+    - [auctex](https://www.gnu.org/software/auctex/index.html)
+  - pdf
+    - [pdf-tools](https://github.com/politza/pdf-tools)
+- Sublime
+  - Ease of Use
+    - [iOpener](https://github.com/rosshemsley/iOpener), [Terminus](https://github.com/randy3k/Terminus)
+  - Python
+    - [Anaconda](http://damnwidget.github.io/anaconda/)
+  - Markdown
+    - [MarkdownPreview](https://github.com/facelessuser/MarkdownPreview)
+
+## Icons
 
 icon.py is a script that creates icons for common apps I use. Icons are created in 
 `$HOME/.local/share/applications/`
@@ -115,7 +158,7 @@ icon.py is a script that creates icons for common apps I use. Icons are created 
     # For batch adding all icons at once
     python3 icon.py -a
 
-## credits
+## Credits
 
 The powertop2tuned guide detailed above was based off [this reddit post](https://www.reddit.com/r/Fedora/comments/5pueys/how_to_save_power_with_your_laptop_running_fedora/). 
 Most instructions are the same as the original poster, the difference is the udev rules file. 

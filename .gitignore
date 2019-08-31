@@ -3,3 +3,11 @@
 
 # pycache directories
 __pycache__/
+
+# specific files for sublime
+Package Control.merged-ca-bundle
+Package Control.user-ca-bundle
+Package Control.last-run
+Package Control.cache/
+Terminus/
+i_opener_history.sublime-settings
