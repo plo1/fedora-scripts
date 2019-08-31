@@ -1,8 +1,19 @@
-# Fedora-Scripts
+# System-Setup
 
-Contains my setup for controlling nVidia Optimus and instruction for enabling powersaving features.
+Contains my setup for my computer
 
 **Note: For Fedora only**
+
+## Table of Contents
+
+- [Dependencies](#dependencies)
+- [powertop2tuned](#powertop2tuned)
+- [gpuselect](#gpuselect)
+  - [Goal](#goal)
+  - [How it works](#how-it-works)
+  - [Setup/Usage](#Setup/Usage)
+- [icons](#icons)
+- [Credits](#credits)
 
 ## Dependencies
 
@@ -71,7 +82,7 @@ then substring will be removed from the grub parameters. If the selected gpu is 
 **is not** found then the substring will be inserted into the beginning of the grub parameter. Nothing
 done in all other cases.
 
-### How to use
+### Setup/Usage
 
 1. Copy `gpuselect.py` to your PATH. In my case,
 
@@ -88,7 +99,7 @@ done in all other cases.
 
 Note: This script only works for computers with optimus technology
 
-## icon
+## icons
 
 icon.py is a script that creates icons for common apps I use. Icons are created in 
 `$HOME/.local/share/applications/`
