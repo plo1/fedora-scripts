@@ -17,6 +17,7 @@ Contains my setup for my computer
   - [Sublime](#Sublime)
   - [List of Plugins](#List-of-Plugins)
 - [Icons](#Icons)
+- [Bluetooth Mouse Lag](#Bluetooth-Mouse-Lag)
 - [Credits](#Credits)
 
 ## powertop2tuned
@@ -161,6 +162,16 @@ icon.py is a script that creates icons for common apps I use. Icons are created 
     # For batch adding all icons at once
     python3 icon.py -a
 
+## Bluetooth Mouse Lag
+
+Copy config below into `/var/lib/bluetooth/XX:XX:XX:XX:XX:XX/ZZ:ZZ:ZZ:ZZ:ZZ:ZZ/info`
+    
+    [ConnectionParameters]
+    MinInterval=6
+    MaxInterval=9
+    Latency=44
+    Timeout=216
+    
 ## Credits
 
 The powertop2tuned guide detailed above was based off [this reddit post](https://www.reddit.com/r/Fedora/comments/5pueys/how_to_save_power_with_your_laptop_running_fedora/). 
