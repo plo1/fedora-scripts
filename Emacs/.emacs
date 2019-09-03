@@ -50,6 +50,7 @@
 
 ;; yasnippet settings
 (yas-global-mode 1)
+(setq yas-triggers-in-field t)
 
 ;; anaconda-mode + company-anaconda settings
 (setq python-shell-interpreter "python3")
