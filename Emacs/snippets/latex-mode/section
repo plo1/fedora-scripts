@@ -3,5 +3,4 @@
 # key: section
 # --
 \section{${1:name}}
-\label{sec:${2:label}}
 $0
