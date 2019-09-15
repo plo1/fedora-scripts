@@ -1,6 +1,6 @@
 # -*- mode: snippet -*-
 # name: graphicx
-# key: graphicx
+# key: gfx
 # --
 \usepackage{graphicx}
 \graphicspath{{$1}}$0
