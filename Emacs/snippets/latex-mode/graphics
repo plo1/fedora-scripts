@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: graphics
+# key: gfc
+# --
+\includegraphics[scale=$2]{$1}$0
