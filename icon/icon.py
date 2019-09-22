@@ -27,9 +27,19 @@ def init_icon():
         'Terminal=false\n' \
         'Categories=Development;IDE;\n'
 
+    matlab = '[Desktop Entry]\n' \
+        'Name=Matlab\n' \
+        'Type=Application\n' \
+        'Exec=matlab -desktop\n' \
+        'Icon=/usr/local/MATLAB/R2019b/bin/glnxa64/cef_resources/matlab_icon.png\n' \
+        'Terminal=False\n' \
+        'Comment=Computational Programming Environment\n' \
+        'Version=R2019b\n' \
+        'Categories=Development;IDE;\n'
+
     icons['eclipse.desktop'] = eclipse
     icons['android-studio.desktop'] = android_studio 
-
+    icons['matlab.desktop'] = matlab
     
 def create_icon_single():
     for key, value in icons.items():
