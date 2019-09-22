@@ -18,6 +18,7 @@ Contains my setup for my computer
   - [List of Plugins](#List-of-Plugins)
 - [Icons](#Icons)
 - [Bluetooth Mouse Lag](#Bluetooth-Mouse-Lag)
+- [Matlab](#Matlab)
 - [Credits](#Credits)
 
 ## powertop2tuned
@@ -171,6 +172,12 @@ Copy config below into `/var/lib/bluetooth/XX:XX:XX:XX:XX:XX/ZZ:ZZ:ZZ:ZZ:ZZ:ZZ/i
     MaxInterval=9
     Latency=44
     Timeout=216
+    
+## Matlab
+
+If matlab crashes when running `matlab -nosoftwareopengl`
+
+    sudo mv /usr/local/MATLAB/R2019b/sys/os/glnxa64/libstdc++.so.6 /usr/local/MATLAB/R2019b/sys/os/glnxa64/libstdc++.so.6.old
     
 ## Credits
 
