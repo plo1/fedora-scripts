@@ -45,7 +45,7 @@
 
 ;; company settings
 (add-hook 'after-init-hook 'global-company-mode)
-(setq company-idle-delay 0.001)
+(setq company-idle-delay 0.1)
 (setq company-minimum-prefix-length 3)
 
 ;; yasnippet settings
