@@ -56,6 +56,7 @@
 (setq python-shell-interpreter "python3")
 (add-hook 'python-mode-hook 'anaconda-mode)
 (add-hook 'python-mode-hook 'anaconda-eldoc-mode)
+(add-hook 'python-mode-hook (lambda () (setq-local company-minimum-prefix-length 1)))
 (with-eval-after-load 'company
     (add-to-list 'company-backends '(company-anaconda)))
 
