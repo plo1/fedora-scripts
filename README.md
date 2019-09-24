@@ -117,6 +117,8 @@ Note: This script only works for computers with optimus technology
 2. Copy `Emacs/.emacs` file to `/home/$USER/` directory
 3. Start Emacs
 
+Note: if there is a gpg key issue with elpa run `gpg --homedir ~/.emacs.d/elpa/gnupg --receive-keys 066DAFCB81E42C40`
+
 ### Sublime
 
 1. Install system dependencies
