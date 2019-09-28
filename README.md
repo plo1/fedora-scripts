@@ -208,6 +208,9 @@ Add following to `virsh edit win10`
         <topology sockets='1' cores='4' threads='1'/>
     </cpu>
 
+Sourced from https://level1techs.com/article/ryzen-gpu-passthrough-setup-guide-fedora-26-windows-gaming-linux
+And https://wiki.archlinux.org/index.php/PCI_passthrough_via_OVMF
+And https://qubitrenegade.com/virtualization/kvm/vfio/2019/07/17/VFIO-Fedora-Notes.html
 ## Credits
 
 The powertop2tuned guide detailed above was based off [this reddit post](https://www.reddit.com/r/Fedora/comments/5pueys/how_to_save_power_with_your_laptop_running_fedora/). 
