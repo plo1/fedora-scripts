@@ -19,7 +19,7 @@ Contains my setup for my computer
 - [Icons](#Icons)
 - [Bluetooth Mouse Lag](#Bluetooth-Mouse-Lag)
 - [Matlab](#Matlab)
-- [GPU Pass Through](#GPU-Pass-Through)
+- [GPU Passthrough](#GPU-Passthrough)
 - [Credits](#Credits)
 
 ## powertop2tuned
@@ -182,7 +182,7 @@ If matlab crashes when running `matlab -nosoftwareopengl`
 
     sudo mv /usr/local/MATLAB/R2019b/sys/os/glnxa64/libstdc++.so.6 /usr/local/MATLAB/R2019b/sys/os/glnxa64/libstdc++.so.6.old
     
-## GPU Pass Through
+## GPU Passthrough
 
 For Enabling IOMMU
 1. Append `intel_iommu=on iommu=pt rd.driver.pre=vfio-pci` to /etc/default/grub then restart
