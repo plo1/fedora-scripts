@@ -189,7 +189,7 @@ For Enabling IOMMU
 2. Run `iommu_groups.sh` to check id of passthrough devices
 3. Create `/etc/modprobe.d/vfio.conf` then type `options vfio-pci ids=ID_1,ID2,...ID_N` into the file where each id is the passthrough devices'
 4. Create `/etc/dracut.conf.d/vfio.conf` then type `add_drivers+="vfio vfio_iommu_type1 vfio_pci vfio_virqfd"` into the file
-5. Run ``sudo dracut –f –kver `uname –r` ``
+5. Run ``sudo dracut -f --kver `uname -r` ``
 6. Run `sudo grub2-mkconfig -o /boot/efi/EFI/fedora/grub.cfg`
 7. Restart and check device has been added by running `dmesg | grep -i vfio`
 
