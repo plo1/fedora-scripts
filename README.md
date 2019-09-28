@@ -19,6 +19,7 @@ Contains my setup for my computer
 - [Icons](#Icons)
 - [Bluetooth Mouse Lag](#Bluetooth-Mouse-Lag)
 - [Matlab](#Matlab)
+- [GPU Pass Through](#GPU Pass Through)
 - [Credits](#Credits)
 
 ## powertop2tuned
@@ -180,6 +181,30 @@ Copy config below into `/var/lib/bluetooth/XX:XX:XX:XX:XX:XX/ZZ:ZZ:ZZ:ZZ:ZZ:ZZ/i
 If matlab crashes when running `matlab -nosoftwareopengl`
 
     sudo mv /usr/local/MATLAB/R2019b/sys/os/glnxa64/libstdc++.so.6 /usr/local/MATLAB/R2019b/sys/os/glnxa64/libstdc++.so.6.old
+    
+## GPU Pass Through
+
+For Enabling IOMMU
+1. Append `intel_iommu=on iommu=pt rd.driver.pre=vfio-pci` to /etc/default/grub
+2. Create `/etc/modprobe.d/vfio.conf` then type `options vfio-pci ids=ID_1,ID2,...ID_N` into the file where each id is the passthrough devices'
+3. Create `/etc/dracut.conf.d/vfio.conf` then type `add_drivers+="vfio vfio_iommu_type1 vfio_pci vfio_virqfd"` into the file
+4. Run ``sudo dracut –f –kver `uname –r` ``
+5. Run `sudo grub2-mkconfig -o /boot/efi/EFI/fedora/grub.cfg`
+
+For configuration of Win10 VM
+
+Add following to `virsh edit win10`
+    
+    <features>
+        ...
+        <kvm>
+            <hidden state='on'/>
+        </kvm>
+        ...
+    </features>
+    <cpu mode='host-passthrough' check='none'>
+        <topology sockets='1' cores='4' threads='1'/>
+    </cpu>
     
 ## Credits
 
