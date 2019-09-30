@@ -1,0 +1,16 @@
+# -*- mode: snippet -*-
+# name: article
+# key: article
+# --
+\documentclass[$2]{article}
+\usepackage{fullpage}
+\usepackage{amsmath}
+\usepackage{listings}
+\usepackage{graphicx}
+\usepackage{enumitem}
+\graphicspath{{./}}
+$1
+
+\begin{document}
+$0
+\end{document}
