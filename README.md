@@ -20,6 +20,7 @@ Contains my setup for my computer
 - [Bluetooth Mouse Lag](#Bluetooth-Mouse-Lag)
 - [Matlab](#Matlab)
 - [GPU Passthrough](#GPU-Passthrough)
+- [GDM dual monitor setup](#Dual-Monitor)
 - [Credits](#Credits)
 
 ## powertop2tuned
@@ -211,6 +212,14 @@ Add following to `virsh edit win10`
 Sourced from https://level1techs.com/article/ryzen-gpu-passthrough-setup-guide-fedora-26-windows-gaming-linux
 And https://wiki.archlinux.org/index.php/PCI_passthrough_via_OVMF
 And https://qubitrenegade.com/virtualization/kvm/vfio/2019/07/17/VFIO-Fedora-Notes.html
+
+## Dual Monitor
+
+If gnome login screen is on the wrong monitor, configure properly in gnome-control panel then
+
+`sudo cp .config/monitors.xml ~gdm/.config/monitors.xml`
+
+Restart gdm or computer
 
 ## Credits
 
