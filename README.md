@@ -111,7 +111,7 @@ Note: This script only works for computers with optimus technology
     sudo dnf install texlive-scheme-basic
     # For specific latex class files and stylesheets
     sudo dnf install 'tex(NAME.cls)' 
-    sudo dnf install 'tex(NAME.sty)'    
+    sudo dnf install 'tex(NAME.sty)'
 
 ### Emacs
 
