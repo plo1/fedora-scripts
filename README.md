@@ -41,7 +41,7 @@ Contains my setup for my computer
 4. For my specific case, I add the following lines before the line `[powertop_script]` in my `tuned.conf` file.
 
         # CPU energy performance preference
-        /sys/devices/system/cpu/cpufreq/policy?/energy_performance_preference=balance_power
+        /sys/devices/system/cpu/cpu?/cpufreq/energy_performance_preference=balance_power
 
         [cpu]
         energy_perf_bias=power
