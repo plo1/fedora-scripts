@@ -30,8 +30,8 @@ def init_icon():
     matlab = '[Desktop Entry]\n' \
         'Name=Matlab\n' \
         'Type=Application\n' \
-        'Exec=matlab -desktop\n' \
-        'Icon=/usr/local/MATLAB/R2019b/bin/glnxa64/cef_resources/matlab_icon.png\n' \
+        'Exec=' + home + '/MATLAB/R2019b/bin/matlab -desktop\n' \
+        'Icon=' + home + '/MATLAB/R2019b/bin/glnxa64/cef_resources/matlab_icon.png\n' \
         'Terminal=False\n' \
         'Comment=Computational Programming Environment\n' \
         'Version=R2019b\n' \
