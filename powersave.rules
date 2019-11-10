@@ -2,6 +2,3 @@ SUBSYSTEM=="power_supply", ATTR{status}=="Discharging", RUN+="/usr/sbin/tuned-ad
 SUBSYSTEM=="power_supply", ATTR{status}=="Charging", RUN+="/usr/sbin/tuned-adm profile desktop"
 SUBSYSTEM=="power_supply", ATTR{status}=="Full", RUN+="/usr/sbin/tuned-adm profile desktop"
 
-ACTION=="Change", SUBSYSTEM=="power_supply", ATTR{status}=="Discharging", RUN+="/usr/sbin/tuned-adm profile laptop"
-ACTION=="Change", SUBSYSTEM=="power_supply", ATTR{status}=="Charging", RUN+="/usr/sbin/tuned-adm profile desktop"
-ACTION=="Change", SUBSYSTEM=="power_supply", ATTR{status}=="Full", RUN+="/usr/sbin/tuned-adm profile desktop"
