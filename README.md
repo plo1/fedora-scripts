@@ -12,7 +12,7 @@ Contains my setup for my computer
   - [How it works](#how-it-works)
   - [Usage](#Usage)
 - [Editors](#Editors)
-  - [System Dependencies](#System-Depedencies)
+  - [System Dependencies](#System-Dependencies)
   - [Emacs](#Emacs)
   - [Sublime](#Sublime)
   - [List of Plugins](#List-of-Plugins)
