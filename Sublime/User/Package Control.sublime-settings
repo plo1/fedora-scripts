@@ -6,7 +6,9 @@
 	"installed_packages":
 	[
 		"Anaconda",
+		"EasyClangComplete",
 		"iOpener",
+		"LaTeXTools",
 		"MarkdownPreview",
 		"Package Control",
 		"Terminus"
