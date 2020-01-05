@@ -7,7 +7,7 @@
 (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")))
 (add-to-list 'package-archives
              '("melpa" . "https://melpa.org/packages/") t)
-(setq package-list '(company-anaconda anaconda-mode multiple-cursors vlf helm company-web emmet-mode yasnippet-snippets yasnippet company-irony-c-headers company-irony impatient-mode irony-eldoc irony company markdown-mode edit-indirect pdf-tools auctex treemacs))
+(setq package-list '(company-anaconda anaconda-mode multiple-cursors vlf helm company-web emmet-mode yasnippet-snippets yasnippet company-irony-c-headers company-irony impatient-mode irony-eldoc irony company markdown-mode edit-indirect pdf-tools auctex treemacs meghanada))
 (package-initialize)
 
 ;; fetch the list of packages available 
@@ -75,6 +75,19 @@
 (add-hook 'irony-mode-hook #'irony-eldoc)
 (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
 
+;; meghanada settings
+;; for java
+(require 'meghanada)
+(add-hook 'java-mode-hook (lambda () (meghanada-mode t)))
+
+(cond
+   ((eq system-type 'windows-nt)
+    (setq meghanada-java-path (expand-file-name "bin/java.exe" (getenv "JAVA_HOME")))
+    (setq meghanada-maven-path "mvn.cmd"))
+   (t
+    (setq meghanada-java-path "java")
+    (setq meghanada-maven-path "mvn")))
+
 ;; company-web settings
 (with-eval-after-load 'company
     (add-to-list 'company-backends '(company-web-html company-web-jade company-web-slim)))
@@ -135,7 +148,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (treemacs auctex pdf-tools edit-indirect markdown-mode irony-eldoc impatient-mode company-irony company-irony-c-headers yasnippet-snippets emmet-mode company-web helm vlf multiple-cursors company-anaconda))))
+    (meghanada treemacs auctex pdf-tools edit-indirect markdown-mode irony-eldoc impatient-mode company-irony company-irony-c-headers yasnippet-snippets emmet-mode company-web helm vlf multiple-cursors company-anaconda))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
