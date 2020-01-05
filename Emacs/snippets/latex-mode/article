@@ -2,7 +2,7 @@
 # name: article
 # key: article
 # --
-\documentclass[$2]{article}
+\documentclass{article}
 \usepackage{fullpage}
 \usepackage{amsmath}
 \usepackage{listings}
