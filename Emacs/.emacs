@@ -7,7 +7,7 @@
 (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")))
 (add-to-list 'package-archives
              '("melpa" . "https://melpa.org/packages/") t)
-(setq package-list '(company-anaconda anaconda-mode multiple-cursors vlf helm company-web emmet-mode yasnippet-snippets yasnippet company-irony-c-headers company-irony impatient-mode irony-eldoc irony company markdown-mode edit-indirect pdf-tools auctex treemacs lsp-mode lsp-java company-lsp))
+(setq package-list '(company-anaconda anaconda-mode multiple-cursors vlf helm company-web emmet-mode yasnippet-snippets yasnippet company-irony-c-headers company-irony impatient-mode irony-eldoc irony company markdown-mode edit-indirect pdf-tools auctex treemacs lsp-mode company-lsp lsp-java))
 (package-initialize)
 
 ;; fetch the list of packages available 
@@ -75,12 +75,15 @@
 (add-hook 'irony-mode-hook #'irony-eldoc)
 (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
 
-;; lsp-mode + lsp-java + company-lsp
+;; lsp-mode + company-lsp
 (require 'lsp-mode)
-(require 'lsp-java)
-(add-hook 'java-mode-hook #'lsp)
 (require 'company-lsp)
 (push 'company-lsp company-backends)
+(setq lsp-prefer-flymake :none)
+
+;; lsp-java
+(require 'lsp-java)
+(add-hook 'java-mode-hook #'lsp)
 
 ;; company-web settings
 (with-eval-after-load 'company
