@@ -29,6 +29,7 @@
 (show-paren-mode 1)
 (electric-pair-mode 1)
 (global-set-key (kbd "s-t") 'shell)
+(global-set-key [f12] 'indent-region)
 
 ;; Semantic mode
 (require 'semantic)

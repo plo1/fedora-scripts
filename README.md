@@ -105,10 +105,12 @@ Note: This script only works for computers with optimus technology
 
     # For irony-mode
     sudo dnf install gcc gcc-c++ make cmake clang-devel llvm-devel
+    # For lsp-java
+    sudo dnf install maven
     # For pdf-tools
     sudo dnf install automake autoconf gcc gcc-c++ ImageMagick libpng-devel zlib-devel poppler-glib-devel
     # For auctex
-    sudo dnf install texlive-scheme-basic
+    sudo dnf install texlive-scheme-full
     # For specific latex class files and stylesheets
     sudo dnf install 'tex(NAME.cls)' 
     sudo dnf install 'tex(NAME.sty)'
@@ -140,6 +142,9 @@ Note: if there is a gpg key issue with elpa run `gpg --homedir ~/.emacs.d/elpa/g
   - C/C++
     - [irony-mode](https://github.com/Sarcasm/irony-mode), [company-irony](https://github.com/Sarcasm/company-irony), 
       [company-irony-c-headers](https://github.com/hotpxl/company-irony-c-headers)
+  - Java
+    - [lsp-mode](https://github.com/emacs-lsp/lsp-mode#installation), [lsp-java](https://github.com/emacs-lsp/lsp-java),
+      [company-lsp](https://github.com/tigersoldier/company-lsp)
   - HTML
     - [emmet-mode](https://github.com/smihica/emmet-mode)
       [impatient-mode](https://github.com/skeeto/impatient-mode), [company-web](https://github.com/osv/company-web)
@@ -156,6 +161,10 @@ Note: if there is a gpg key issue with elpa run `gpg --homedir ~/.emacs.d/elpa/g
     - [Anaconda](http://damnwidget.github.io/anaconda/)
   - Markdown
     - [MarkdownPreview](https://github.com/facelessuser/MarkdownPreview)
+  - Latex
+    - [LaTeXTools](https://packagecontrol.io/packages/LaTeXTools)
+  - C/C++
+    - [EasyClangComplete](https://packagecontrol.io/packages/EasyClangComplete)
 
 ## Icons
 
