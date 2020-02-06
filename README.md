@@ -103,7 +103,7 @@ Note: This script only works for computers with optimus technology
 
 ### System Dependencies
 
-    # For irony-mode
+    # For c++ completions on lsp-mode
     sudo dnf install gcc gcc-c++ make cmake clang-devel llvm-devel
     # For lsp-java
     sudo dnf install maven
@@ -114,6 +114,8 @@ Note: This script only works for computers with optimus technology
     # For specific latex class files and stylesheets
     sudo dnf install 'tex(NAME.cls)' 
     sudo dnf install 'tex(NAME.sty)'
+    # For lsp-tex completions
+    sudo dnf install luarocks lua-devel
 
 ### Emacs
 
@@ -136,22 +138,21 @@ Note: if there is a gpg key issue with elpa run `gpg --homedir ~/.emacs.d/elpa/g
   - Ease of Use
     - [multiple-cursor-mode](https://github.com/magnars/multiple-cursors.el), [vlf](https://github.com/m00natic/vlfi),
       [company](http://company-mode.github.io/), [yasnippet](https://github.com/joaotavora/yasnippet), 
-      [yasnippet-snippets](https://github.com/AndreaCrotti/yasnippet-snippets), [helm](https://github.com/emacs-helm/helm)
+      [yasnippet-snippets](https://github.com/AndreaCrotti/yasnippet-snippets), [helm](https://github.com/emacs-helm/helm),
+      [lsp-mode](https://github.com/emacs-lsp/lsp-mode#installation), [company-lsp](https://github.com/tigersoldier/company-lsp),
   - Python
     - [anaconda-mode](https://github.com/proofit404/anaconda-mode), [company-anaconda](https://github.com/proofit404/company-anaconda)
   - C/C++
-    - [irony-mode](https://github.com/Sarcasm/irony-mode), [company-irony](https://github.com/Sarcasm/company-irony), 
-      [company-irony-c-headers](https://github.com/hotpxl/company-irony-c-headers)
+    - [lsp-mode](https://github.com/emacs-lsp/lsp-mode#installation)
   - Java
-    - [lsp-mode](https://github.com/emacs-lsp/lsp-mode#installation), [lsp-java](https://github.com/emacs-lsp/lsp-java),
-      [company-lsp](https://github.com/tigersoldier/company-lsp)
+    - [lsp-java](https://github.com/emacs-lsp/lsp-java), [lsp-mode](https://github.com/emacs-lsp/lsp-mode#installation)
   - HTML
     - [emmet-mode](https://github.com/smihica/emmet-mode)
       [impatient-mode](https://github.com/skeeto/impatient-mode), [company-web](https://github.com/osv/company-web)
   - Markdown
     - [markdown-mode](https://github.com/jrblevin/markdown-mode/tree/115f77df9755c6a453f3e5d9623ff885d207ea82)
   - Latex
-    - [auctex](https://www.gnu.org/software/auctex/index.html)
+    - [auctex](https://www.gnu.org/software/auctex/index.html), [lsp-mode](https://github.com/emacs-lsp/lsp-mode#installation)
   - pdf
     - [pdf-tools](https://github.com/politza/pdf-tools)
 - Sublime

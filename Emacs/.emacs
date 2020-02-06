@@ -58,6 +58,14 @@
 (yas-global-mode 1)
 (setq yas-triggers-in-field t)
 
+;; lsp-mode + company-lsp
+(require 'lsp-mode)
+(require 'company-lsp)
+(add-to-list 'company-lsp-filter-candidates '(digestif . nil))
+(push 'company-lsp company-backends)
+(setq lsp-prefer-flymake :none)
+
+
 ;; anaconda-mode + company-anaconda settings
 (add-hook 'python-mode-hook 'anaconda-mode)
 (add-hook 'python-mode-hook 'anaconda-eldoc-mode)
@@ -69,12 +77,6 @@
 ;; lsp-mode + c-mode
 (add-hook 'c++-mode-hook #'lsp)
 (add-hook 'c-mode-hook #'lsp)
-
-;; lsp-mode + company-lsp
-(require 'lsp-mode)
-(require 'company-lsp)
-(push 'company-lsp company-backends)
-(setq lsp-prefer-flymake :none)
 
 ;; lsp-java
 (require 'lsp-java)
@@ -127,7 +129,8 @@
 (setq TeX-view-program-selection '((output-pdf "PDF Tools"))
       TeX-source-correlate-start-server t)
 (add-hook 'TeX-after-compilation-finished-functions #'TeX-revert-document-buffer)
-(add-hook 'LaTeX-mode-hook (lambda () (setq-local company-idle-delay 2)))
+;(add-hook 'LaTeX-mode-hook (lambda () (setq-local company-idle-delay 1)))
+(add-hook 'LaTeX-mode-hook #'lsp)
 
 ;; Treemacs settings
 (require 'treemacs)
