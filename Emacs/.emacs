@@ -63,7 +63,7 @@
 (require 'company-lsp)
 (add-to-list 'company-lsp-filter-candidates '(digestif . nil))
 (push 'company-lsp company-backends)
-(setq lsp-prefer-flymake :none)
+(setq lsp-diagnostic-package :none)
 
 
 ;; anaconda-mode + company-anaconda settings
