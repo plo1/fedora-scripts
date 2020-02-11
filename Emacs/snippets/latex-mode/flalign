@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: flalign
+# key: flalign
+# --
+\begin{flalign*}
+        $1
+\end{flalign*}
+$0
