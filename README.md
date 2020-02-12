@@ -21,6 +21,7 @@ Contains my setup for my computer
 - [Matlab](#Matlab)
 - [GPU Passthrough](#GPU-Passthrough)
 - [GDM dual monitor setup](#Dual-Monitor)
+- [KVM filesharing](#KVM-filesharing)
 - [Credits](#Credits)
 
 ## powertop2tuned
@@ -116,6 +117,8 @@ Note: This script only works for computers with optimus technology
     sudo dnf install 'tex(NAME.sty)'
     # For lsp-tex completions
     sudo dnf install luarocks lua-devel
+    # For markdown previews
+    sudo dnf install discount
 
 ### Emacs
 
@@ -230,6 +233,35 @@ If gnome login screen is on the wrong monitor, configure properly in gnome-contr
 `sudo cp .config/monitors.xml ~gdm/.config/monitors.xml`
 
 Restart gdm or computer
+
+## KVM filesharing
+
+Create a folder you want to share and give it permission
+
+    user@host$ mkdir test_folder
+    user@host$ chmod 777 test_folder
+    
+In virt-manager when adding a filesystem make sure settings are as follows
+
+    Type: mount
+    Driver: default
+    Mode: Mapped
+    Source path: /path_to_folder/test_folder
+    Target path: share
+    
+If using Fedora configure selinux settings
+
+    user@host# semanage fcontext -a -t svirt_image_t "/path_to_test_folder/test_folder(/.*)?"
+    user@host# restorecon -vR /path_to_folder/test_folder
+
+To test out folder mount in guest system
+    
+    user@guest$ mkdir mnt
+    user@guest# mount -t 9p -o trans=virtio,version=9p2000.L,rw share /path_to_/mnt
+
+To mount folder in guest at boot add `share   /mnt    9p  trans=virtio,version=9p2000.L,rw    0   0` to `/etc/fstab` of guest system
+
+
 
 ## Credits
 
