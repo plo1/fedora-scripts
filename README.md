@@ -262,6 +262,16 @@ To test out folder mount in guest system
 
 To mount folder in guest at boot add `share   /path_to_mntpt/mntpt    9p  trans=virtio,version=9p2000.L,rw    0   0` to `/etc/fstab` of guest system
 
+If on Ubuntu 18.04 LTS or below, add to `/etc/initramfs-tools/modules`
+
+    9p
+    9pnet
+    9pnet_virtio
+    
+Then:
+    
+    sudo update-initramfs -u
+    
 ## CUDA Path
 
 After installing CUDA from [RPMFusion](https://rpmfusion.org/Howto/CUDA?highlight=%28CategoryHowto%29) make sure to append the cuda path below to `/home/$USER/.bashrc`
