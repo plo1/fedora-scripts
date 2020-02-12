@@ -257,10 +257,10 @@ If using Fedora configure selinux settings
 
 To test out folder mount in guest system
     
-    user@guest$ mkdir mnt
-    user@guest# mount -t 9p -o trans=virtio,version=9p2000.L,rw share /path_to_/mnt
+    user@guest$ mkdir mntpt
+    user@guest# mount -t 9p -o trans=virtio,version=9p2000.L,rw share /path_to_mntpt/mntpt
 
-To mount folder in guest at boot add `share   /mnt    9p  trans=virtio,version=9p2000.L,rw    0   0` to `/etc/fstab` of guest system
+To mount folder in guest at boot add `share   /path_to_mntpt/mntpt    9p  trans=virtio,version=9p2000.L,rw    0   0` to `/etc/fstab` of guest system
 
 ## CUDA Path
 
