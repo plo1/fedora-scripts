@@ -22,6 +22,7 @@ Contains my setup for my computer
 - [GPU Passthrough](#GPU-Passthrough)
 - [GDM dual monitor setup](#Dual-Monitor)
 - [KVM filesharing](#KVM-filesharing)
+- [CUDA Path](#CUDA-Path)
 - [Credits](#Credits)
 
 ## powertop2tuned
@@ -261,7 +262,12 @@ To test out folder mount in guest system
 
 To mount folder in guest at boot add `share   /mnt    9p  trans=virtio,version=9p2000.L,rw    0   0` to `/etc/fstab` of guest system
 
+## CUDA Path
 
+After installing CUDA from [RPMFusion](https://rpmfusion.org/Howto/CUDA?highlight=%28CategoryHowto%29) make sure to append the cuda path below to `/home/$USER/.bashrc`
+
+    export PATH=/usr/local/cuda/bin:$PATH
+    export LD_LIBRARY_PATH=/usr/local/cuda/lib64:$LD_LIBRARY_PATH
 
 ## Credits
 
