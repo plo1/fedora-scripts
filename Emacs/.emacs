@@ -7,7 +7,7 @@
 (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")))
 (add-to-list 'package-archives
              '("melpa" . "https://melpa.org/packages/") t)
-(setq package-list '(company-anaconda anaconda-mode multiple-cursors vlf helm company-web emmet-mode yasnippet-snippets yasnippet impatient-mode company markdown-mode edit-indirect pdf-tools auctex treemacs lsp-mode company-lsp lsp-java))
+(setq package-list '(company-anaconda anaconda-mode multiple-cursors vlf helm company-web emmet-mode yasnippet-snippets yasnippet impatient-mode company markdown-mode edit-indirect pdf-tools auctex treemacs lsp-mode company-lsp lsp-java irony company-irony company-irony-c-headers irony-eldoc))
 (package-initialize)
 
 ;; fetch the list of packages available 
@@ -64,6 +64,8 @@
 (add-to-list 'company-lsp-filter-candidates '(digestif . nil))
 (push 'company-lsp company-backends)
 (setq lsp-diagnostic-package :none)
+(setq company-lsp-enable-snippet t)
+(setq lsp-enable-snippet t)
 
 
 ;; anaconda-mode + company-anaconda settings
@@ -75,8 +77,21 @@
 
 ;; lsp-mode + c++-mode
 ;; lsp-mode + c-mode
-(add-hook 'c++-mode-hook #'lsp)
-(add-hook 'c-mode-hook #'lsp)
+;;(add-hook 'c++-mode-hook #'lsp)
+;;(add-hook 'c-mode-hook #'lsp)
+
+;; For c++ and c
+(add-hook 'c++-mode-hook 'irony-mode)
+(add-hook 'c-mode-hook 'irony-mode)
+(add-hook 'objc-mode-hook 'irony-mode)
+(add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
+(add-hook 'irony-mode-hook #'irony-eldoc)
+(eval-after-load 'company
+  '(add-to-list 'company-backends 'company-irony))
+(require 'company-irony-c-headers)
+(eval-after-load 'company
+     '(add-to-list
+       'company-backends '(company-irony-c-headers company-irony)))
 
 ;; lsp-java
 (require 'lsp-java)
@@ -143,7 +158,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (smartparens company-lsp meghanada treemacs auctex pdf-tools edit-indirect markdown-mode irony-eldoc impatient-mode company-irony company-irony-c-headers yasnippet-snippets emmet-mode company-web helm vlf multiple-cursors company-anaconda))))
+    (irony smartparens company-lsp meghanada treemacs auctex pdf-tools edit-indirect markdown-mode irony-eldoc impatient-mode company-irony company-irony-c-headers yasnippet-snippets emmet-mode company-web helm vlf multiple-cursors company-anaconda))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

@@ -105,7 +105,7 @@ Note: This script only works for computers with optimus technology
 
 ### System Dependencies
 
-    # For c++ completions on lsp-mode
+    # For c++ completions on irony-mode
     sudo dnf install gcc gcc-c++ make cmake clang-devel llvm-devel
     # For lsp-java
     sudo dnf install maven
@@ -147,7 +147,8 @@ Note: if there is a gpg key issue with elpa run `gpg --homedir ~/.emacs.d/elpa/g
   - Python
     - [anaconda-mode](https://github.com/proofit404/anaconda-mode), [company-anaconda](https://github.com/proofit404/company-anaconda)
   - C/C++
-    - [lsp-mode](https://github.com/emacs-lsp/lsp-mode#installation)
+    - [irony](https://github.com/Sarcasm/irony-mode), [company-irony](https://github.com/Sarcasm/company-irony), 
+      [company-irony-c-headers](https://github.com/hotpxl/company-irony-c-headers), [irony-eldoc](https://github.com/ikirill/irony-eldoc)
   - Java
     - [lsp-java](https://github.com/emacs-lsp/lsp-java), [lsp-mode](https://github.com/emacs-lsp/lsp-mode#installation)
   - HTML
