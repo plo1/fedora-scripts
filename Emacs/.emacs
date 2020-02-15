@@ -24,6 +24,7 @@
 (setq make-backup-files nil)
 (setq auto-save-timeout 300)
 (setq-default indent-tabs-mode nil)
+(setq-default c-basic-offset 4)
 (setq inhibit-startup-screen t)
 (setq show-paren-delay 0)
 (show-paren-mode 1)
