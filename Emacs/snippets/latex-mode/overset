@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: overset
+# key: os
+# --
+\overset{$1}{$0}

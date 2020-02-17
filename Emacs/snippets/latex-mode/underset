@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: underset
+# key: us
+# --
+\underset{$1}{$0}
