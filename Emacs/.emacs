@@ -4,10 +4,8 @@
 ;; You may delete these explanatory comments.
 
 (require 'package)
-(setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")))
-(add-to-list 'package-archives
-             '("melpa" . "https://melpa.org/packages/") t)
-(setq package-list '(company-anaconda anaconda-mode multiple-cursors vlf helm company-web emmet-mode yasnippet-snippets yasnippet impatient-mode company markdown-mode edit-indirect pdf-tools auctex treemacs lsp-mode company-lsp lsp-java irony company-irony company-irony-c-headers irony-eldoc))
+(setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/") ("melpa" . "https://melpa.org/packages/")))
+(setq package-list '(company-anaconda anaconda-mode multiple-cursors vlf helm company-web emmet-mode yasnippet-snippets yasnippet impatient-mode company markdown-mode edit-indirect pdf-tools auctex treemacs eglot))
 (package-initialize)
 
 ;; fetch the list of packages available 
@@ -59,44 +57,20 @@
 (yas-global-mode 1)
 (setq yas-triggers-in-field t)
 
-;; lsp-mode + company-lsp
-(require 'lsp-mode)
-(require 'company-lsp)
-(add-to-list 'company-lsp-filter-candidates '(digestif . nil))
-(push 'company-lsp company-backends)
-(setq lsp-diagnostic-package :none)
-(setq company-lsp-enable-snippet t)
-(setq lsp-enable-snippet t)
-
-
 ;; anaconda-mode + company-anaconda settings
+(setq python-shell-interpreter "/usr/bin/python3")
 (add-hook 'python-mode-hook 'anaconda-mode)
 (add-hook 'python-mode-hook 'anaconda-eldoc-mode)
 (add-hook 'python-mode-hook (lambda () (setq-local company-minimum-prefix-length 1)))
 (with-eval-after-load 'company
     (add-to-list 'company-backends '(company-anaconda)))
 
-;; lsp-mode + c++-mode
-;; lsp-mode + c-mode
-;;(add-hook 'c++-mode-hook #'lsp)
-;;(add-hook 'c-mode-hook #'lsp)
-
-;; For c++ and c
-(add-hook 'c++-mode-hook 'irony-mode)
-(add-hook 'c-mode-hook 'irony-mode)
-(add-hook 'objc-mode-hook 'irony-mode)
-(add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
-(add-hook 'irony-mode-hook #'irony-eldoc)
-(eval-after-load 'company
-  '(add-to-list 'company-backends 'company-irony))
-(require 'company-irony-c-headers)
-(eval-after-load 'company
-     '(add-to-list
-       'company-backends '(company-irony-c-headers company-irony)))
-
-;; lsp-java
-(require 'lsp-java)
-(add-hook 'java-mode-hook #'lsp)
+;; c-mode + eglot
+;; c++-mode + eglot
+(require 'eglot)
+(add-to-list 'eglot-server-programs '((c++-mode c-mode) "clangd"))
+(add-hook 'c-mode-hook 'eglot-ensure)
+(add-hook 'c++-mode-hook 'eglot-ensure)
 
 ;; company-web settings
 (with-eval-after-load 'company
