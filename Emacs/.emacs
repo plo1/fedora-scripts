@@ -4,13 +4,17 @@
 ;; You may delete these explanatory comments.
 
 (require 'package)
-(setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/") ("melpa" . "https://melpa.org/packages/")))
-(setq package-list '(company-anaconda anaconda-mode multiple-cursors vlf helm company-web emmet-mode yasnippet-snippets yasnippet impatient-mode company markdown-mode edit-indirect pdf-tools auctex treemacs eglot))
+(setq package-archives
+      '(("gnu" . "http://elpa.gnu.org/packages/")
+        ("melpa" . "https://melpa.org/packages/")))
+(setq package-list
+      '(helm company yasnippet yasnippet-snippets
+             multiple-cursors vlf pdf-tools treemacs
+             eglot lsp-mode company-lsp lsp-java markdown-mode auctex))
 (package-initialize)
 
 ;; fetch the list of packages available 
-(unless package-archive-contents
-  (package-refresh-contents))
+(unless package-archive-contents (package-refresh-contents))
 
 ;; install the missing packages
 (dolist (package package-list)
@@ -22,18 +26,12 @@
 (setq make-backup-files nil)
 (setq auto-save-timeout 300)
 (setq-default indent-tabs-mode nil)
-(setq-default c-basic-offset 4)
 (setq inhibit-startup-screen t)
 (setq show-paren-delay 0)
 (show-paren-mode 1)
 (global-set-key (kbd "s-t") 'shell)
 (global-set-key [f12] 'indent-region)
 (electric-pair-mode 1)
-
-;; Semantic mode
-(require 'semantic)
-(semantic-mode 1)
-(global-semantic-stickyfunc-mode 1)
 
 ;; multiple-cursors-mode
 (require 'multiple-cursors)
@@ -57,31 +55,6 @@
 (yas-global-mode 1)
 (setq yas-triggers-in-field t)
 
-;; anaconda-mode + company-anaconda settings
-(setq python-shell-interpreter "/usr/bin/python3")
-(add-hook 'python-mode-hook 'anaconda-mode)
-(add-hook 'python-mode-hook 'anaconda-eldoc-mode)
-(add-hook 'python-mode-hook (lambda () (setq-local company-minimum-prefix-length 1)))
-(with-eval-after-load 'company
-    (add-to-list 'company-backends '(company-anaconda)))
-
-;; c-mode + eglot
-;; c++-mode + eglot
-(require 'eglot)
-(add-to-list 'eglot-server-programs '((c++-mode c-mode) "clangd"))
-(add-hook 'c-mode-hook 'eglot-ensure)
-(add-hook 'c++-mode-hook 'eglot-ensure)
-
-;; company-web settings
-(with-eval-after-load 'company
-    (add-to-list 'company-backends '(company-web-html company-web-jade company-web-slim)))
-
-;; emmet-mode Settings
-(add-hook 'sgml-mode-hook 'emmet-mode)
-(add-hook 'html-mode-hook 'emmet-mode)
-(add-hook 'css-mode-hook  'emmet-mode)
-(add-hook 'web-mode-hook 'emmet-mode)
-
 ;; helm settings
 (require 'helm-config)
 (helm-mode 1)
@@ -92,25 +65,35 @@
 (global-set-key (kbd "M-<tab>") 'helm-lisp-completion-at-point)
 (global-set-key (kbd "M-/") 'helm-dabbrev)
 (global-set-key (kbd "C-c h") 'helm-command-prefix)
-
 (define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action) ; rebind tab to run persistent action
 (define-key helm-map (kbd "C-i") 'helm-execute-persistent-action) ; make TAB work in terminal
 (define-key helm-map (kbd "C-z")  'helm-select-action) ; list actions using C-z
-
 (when (executable-find "curl")
   (setq helm-google-suggest-use-curl-p t))
-
 (setq helm-split-window-in-side-p           t ; open helm buffer inside current window, not occupy whole other window
       helm-move-to-line-cycle-in-source     t ; move to end or beginning of source when reaching top or bottom of source.
       helm-ff-search-library-in-sexp        t ; search for library in `require' and `declare-function' sexp.
       helm-scroll-amount                    8 ; scroll 8 lines other window using M-<next>/M-<prior>
       helm-ff-file-name-history-use-recentf t)
 
-;; Impatient-mode markdown function
-(defun markdown-html (buffer)
-  (princ (with-current-buffer buffer
-    (format "<!DOCTYPE html><html><title>Impatient Markdown</title><xmp theme=\"united\" style=\"display:none;\"> %s  </xmp><script src=\"http://strapdownjs.com/v/0.2/strapdown.js\"></script></html>" (buffer-substring-no-properties (point-min) (point-max))))
-  (current-buffer)))
+;; python-mode + eglot
+(setq python-shell-interpreter "/usr/bin/python3")
+(add-hook 'python-mode-hook 'eglot-ensure)
+
+;; c-mode + eglot
+;; c++-mode + eglot
+(require 'eglot)
+(setq-default c-basic-offset 4)
+(add-to-list 'eglot-server-programs '((c++-mode c-mode) "clangd-9"))
+(add-hook 'c-mode-hook 'eglot-ensure)
+(add-hook 'c++-mode-hook 'eglot-ensure)
+
+;; java-mode + lsp-mode
+(require 'company-lsp)
+(push 'company-lsp company-backends)
+(require 'lsp-mode)
+(require 'lsp-java)
+(add-hook 'java-mode-hook #'lsp)
 
 ;; pdf-tools settings
 (pdf-tools-install)
@@ -119,8 +102,8 @@
 (setq TeX-view-program-selection '((output-pdf "PDF Tools"))
       TeX-source-correlate-start-server t)
 (add-hook 'TeX-after-compilation-finished-functions #'TeX-revert-document-buffer)
+(add-hook 'LaTeX-mode-hook 'eglot-ensure)
 ;(add-hook 'LaTeX-mode-hook (lambda () (setq-local company-idle-delay 1)))
-(add-hook 'LaTeX-mode-hook #'lsp)
 
 ;; Treemacs settings
 (require 'treemacs)

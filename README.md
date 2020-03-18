@@ -2,7 +2,7 @@
 
 Contains my setup for my computer
 
-**Note: Package names are Fedora specific**
+**Note: Package names are Ubuntu 18.04.4 LTS specific**
 
 ## Table of Contents
 
@@ -105,20 +105,13 @@ Note: This script only works for computers with optimus technology
 
 ### System Dependencies
 
-    # For c++ completions on irony-mode
-    sudo dnf install gcc gcc-c++ make cmake clang-devel llvm-devel
-    # For lsp-java
-    sudo dnf install maven
-    # For pdf-tools
-    sudo dnf install automake autoconf gcc gcc-c++ ImageMagick libpng-devel zlib-devel poppler-glib-devel
-    # For auctex
-    sudo dnf install texlive-scheme-full
-    # For specific latex class files and stylesheets
-    sudo dnf install 'tex(NAME.cls)' 
-    sudo dnf install 'tex(NAME.sty)'
-    # For lsp-tex completions
-    sudo dnf install luarocks lua-devel
-    # For markdown previews
+    # For C/C++ completions
+    sudo apt install clangd-9
+    # For LATEX
+    sudo dnf install texlive-full
+    # For LATEX completions
+    sudo apt install lua5.3 luarocks liblua-5.3
+    # For Markdown preview
     sudo dnf install discount
 
 ### Emacs
