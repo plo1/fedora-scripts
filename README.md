@@ -70,11 +70,15 @@ Contains my setup for my computer
     # For C/C++ completions
     sudo apt install clangd-9
     # For LATEX
-    sudo dnf install texlive-full
+    sudo apt install texlive-full
     # For LATEX completions
-    sudo apt install lua5.3 luarocks liblua-5.3
+    sudo apt install lua5.3 luarocks liblua5.3
+    sudo luarocks install digestif
     # For Markdown preview
-    sudo dnf install discount
+    sudo apt install discount
+    # For python language server
+    sudo apt install python3-pip
+    pip3 install 'python-language-server[all]'
 
 ### Emacs
 
