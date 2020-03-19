@@ -7,10 +7,6 @@ Contains my setup for my computer
 ## Table of Contents
 
 - [powertop2tuned](#powertop2tuned)
-- [gpuselect](#gpuselect)
-  - [Goal](#goal)
-  - [How it works](#how-it-works)
-  - [Usage](#Usage)
 - [Editors](#Editors)
   - [System Dependencies](#System-Dependencies)
   - [Emacs](#Emacs)
@@ -27,9 +23,9 @@ Contains my setup for my computer
 
 ## powertop2tuned
 
-1. Download `powertop` and `tuned-utils`.
+1. Download `powertop`, `tuned-utils`, and `linux-tools-generic-hwe-18.04`.
 
-        sudo dnf install powertop tuned-utils
+        sudo apt install linux-tools-generic-hwe-18.04 powertop tuned-utils
 
 2. Create a powersaving profile for your laptop.
 
@@ -66,40 +62,6 @@ Contains my setup for my computer
         sudo cp powersave.rules /etc/udev/rules.d/
 
 8. Restart your computer to see the results in powertop.
-
-## gpuselect
-
-### Goal
-To imitate the function of prime-select in Ubuntu since prime-select doesn't
-exist for Fedora. The gpu-select folder includes the `gpuselect.py`, used for the gpu switching, and
-`gpuselect_test.py` used for testing `gpuselect.py`. The test cases are very limited, only testing
-switching from nvidia to intel and intel to nvidia on a simple grub file. For complicated grub files
-with out of order parameters in **GRUB_CMDLINE_LINUX=**, the script may not work.
-
-### How it works
-`gpuselect.py` reads the grub file in `/etc/default/grub`, and looks for 
-"rd.driver.blacklist=nouveau modprobe.blacklist=nouveau nvidia-drm.modeset=1" substring in the
-**GRUB_CMDLINE_LINUX=** parameters. If the selected gpu is intel and the substring is found,
-then substring will be removed from the grub parameters. If the selected gpu is nvidia and the substring 
-**is not** found then the substring will be inserted into the beginning of the grub parameter. Nothing
-done in all other cases.
-
-### Usage
-
-1. Copy `gpuselect.py` to your PATH. In my case,
-
-        sudo cp gpuselect.py /usr/local/bin
-
-2. Whenever you need to switch the gpu.
-
-        # To use integrated graphics
-        sudo gpuselect.py intel
-        # To use nvidia graphics
-        sudo gpuselect.py nvidia
-
-3. Restart computer to see changes
-
-Note: This script only works for computers with optimus technology
 
 ## Editors
 
@@ -243,11 +205,6 @@ In virt-manager when adding a filesystem make sure settings are as follows
     Mode: Mapped
     Source path: /path_to_folder/test_folder
     Target path: share
-    
-If using Fedora configure selinux settings
-
-    user@host# semanage fcontext -a -t svirt_image_t "/path_to_test_folder/test_folder(/.*)?"
-    user@host# restorecon -vR /path_to_folder/test_folder
 
 To test out folder mount in guest system
     
@@ -268,10 +225,8 @@ Then:
     
 ## CUDA Path
 
-After installing CUDA from [RPMFusion](https://rpmfusion.org/Howto/CUDA?highlight=%28CategoryHowto%29) make sure to append the cuda path below to `/home/$USER/.bashrc`
+Install [CUDA](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html#post-installation-actions) and [cudnn](https://docs.nvidia.com/deeplearning/sdk/cudnn-install/index.html#install-linux) then follow setting up environmental variable section in [Puget Systems Tutorial](https://www.pugetsystems.com/labs/hpc/How-to-install-CUDA-9-2-on-Ubuntu-18-04-1184/)
 
-    export PATH=/usr/local/cuda/bin:$PATH
-    export LD_LIBRARY_PATH=/usr/local/cuda/lib64:$LD_LIBRARY_PATH
 
 ## Credits
 
