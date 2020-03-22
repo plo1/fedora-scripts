@@ -93,7 +93,7 @@
 (push 'company-lsp company-backends)
 (require 'lsp-mode)
 (require 'lsp-java)
-(add-hook 'java-mode-hook #'lsp)
+(add-hook 'java-mode-hook 'lsp-mode)
 
 ;; pdf-tools settings
 (pdf-tools-install)
