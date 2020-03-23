@@ -10,7 +10,7 @@
 (setq package-list
       '(helm company yasnippet yasnippet-snippets
              multiple-cursors vlf pdf-tools treemacs
-             eglot markdown-mode auctex))
+             eglot lsp-mode company-lsp lsp-java markdown-mode auctex))
 (package-initialize)
 
 ;; fetch the list of packages available 
@@ -87,6 +87,13 @@
 (add-to-list 'eglot-server-programs '((c++-mode c-mode) "clangd-9"))
 (add-hook 'c-mode-hook 'eglot-ensure)
 (add-hook 'c++-mode-hook 'eglot-ensure)
+
+;; java-mode + lsp-mode
+(require 'company-lsp)
+(push 'company-lsp company-backends)
+(require 'lsp-mode)
+(require 'lsp-java)
+(add-hook 'java-mode-hook #'lsp)
 
 ;; pdf-tools settings
 (pdf-tools-install)
