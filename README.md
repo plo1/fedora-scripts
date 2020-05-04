@@ -72,7 +72,7 @@ Contains my setup for my computer
     # For LATEX
     sudo apt install texlive-full
     # For LATEX completions
-    sudo apt install lua5.3 luarocks liblua5.3
+    sudo apt install lua5.3 luarocks liblua5.3-dev
     sudo luarocks install digestif
     # For Markdown preview
     sudo apt install discount

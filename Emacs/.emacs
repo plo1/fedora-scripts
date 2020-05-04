@@ -84,7 +84,7 @@
 ;; c++-mode + eglot
 (require 'eglot)
 (setq-default c-basic-offset 4)
-(add-to-list 'eglot-server-programs '((c++-mode c-mode) "clangd-9"))
+(add-to-list 'eglot-server-programs '((c++-mode c-mode) "clangd"))
 (add-hook 'c-mode-hook 'eglot-ensure)
 (add-hook 'c++-mode-hook 'eglot-ensure)
 
