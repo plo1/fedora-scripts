@@ -29,22 +29,22 @@ android_studio = '[Desktop Entry]\n' \
 matlab = '[Desktop Entry]\n' \
     'Name=Matlab\n' \
     'Type=Application\n' \
-    'Exec=' + '\"' + home + '/MATLAB/R2019b/bin/matlab\" -desktop -r \"startup(%f)\"\n' \
-    'Icon=' + home + '/MATLAB/R2019b/bin/glnxa64/cef_resources/matlab_icon.png\n' \
+    'Exec=' + '\"/usr/local/MATLAB/R2020a/bin/matlab\" -desktop -r \"startup(%f)\"\n' \
+    'Icon=' + '/usr/local/MATLAB/R2020a/bin/glnxa64/cef_resources/matlab_icon.png\n' \
     'Terminal=False\n' \
     'Comment=Computational Programming Environment\n' \
-    'Version=R2019b\n' \
+    'Version=R2020a\n' \
     'Categories=Development;IDE;\n'
 
 matlab_nvidia = '[Desktop Entry]\n' \
-    'Name=Matlab\n' \
+    'Name=Matlab(NVIDIA)\n' \
     'Type=Application\n' \
     'Exec=env __NV_PRIME_RENDER_OFFLOAD=1 __GLX_VENDOR_LIBRARY_NAME=nvidia ' \
-        '\"' + home + '/MATLAB/R2019b/bin/matlab\" -desktop -nosoftwareopengl -r \"startup(%f)\"\n' \
-    'Icon=' + home + '/MATLAB/R2019b/bin/glnxa64/cef_resources/matlab_icon.png\n' \
+        + '\"/usr/local/MATLAB/R2020a/bin/matlab\" -desktop -nosoftwareopengl -r \"startup(%f)\"\n' \
+    'Icon=' + '/usr/local/MATLAB/R2020a/bin/glnxa64/cef_resources/matlab_icon.png\n' \
     'Terminal=False\n' \
     'Comment=Computational Programming Environment\n' \
-    'Version=R2019b\n' \
+    'Version=R2020a\n' \
     'Categories=Development;IDE;\n' \
 
 
@@ -52,21 +52,18 @@ def init_icons():
     icons['eclipse.desktop'] = eclipse
     icons['android-studio.desktop'] = android_studio 
     icons['matlab.desktop'] = matlab
+    icons['matlab_NVIDIA.desktop'] = matlab_nvidia
 
 
 def create_icon_single():
     for key, value in icons.items():
         if input(value + '\nCreate ' + key + '? [y/n]: ') == 'y':
-            if key == 'matlab.desktop' and input('Use prime render offload? [y/n]: ') == 'y':
-                value = matlab_nvidia
             with open(icon_dir + key , 'w+') as f:
                 f.write(value)
 
 
 def create_icon_batch():
     for key, value in icons.items():
-        if key == 'matlab.desktop' and input('Use prime render offload? [y/n]: ') == 'y':
-            value = matlab_nvidia
         with open(icon_dir + key, 'w+') as f:
             f.write(value)
 
