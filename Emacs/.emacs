@@ -9,7 +9,7 @@
         ("melpa-stable" . "https://stable.melpa.org/packages/")))
 (setq package-list
       '(helm company yasnippet yasnippet-snippets
-             multiple-cursors vlf pdf-tools neotree
+             multiple-cursors vlf pdf-tools treemacs
              eglot lsp-mode company-lsp lsp-java markdown-mode auctex))
 (package-initialize)
 
@@ -33,9 +33,9 @@
 (global-set-key [f12] 'indent-region)
 (electric-pair-mode 1)
 
-;; neotree
-(require 'neotree)
-(global-set-key [f8] 'neotree-toggle)
+;; treemacs
+(require 'treemacs)
+(global-set-key [f8] 'treemacs)
 
 ;; multiple-cursors-mode
 (require 'multiple-cursors)
