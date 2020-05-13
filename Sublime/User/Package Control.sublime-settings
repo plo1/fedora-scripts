@@ -5,12 +5,9 @@
 	],
 	"installed_packages":
 	[
-		"Anaconda",
-		"EasyClangComplete",
-		"iOpener",
-		"LaTeXTools",
+		"LSP",
 		"MarkdownPreview",
 		"Package Control",
-		"Terminus"
+		"Terminal"
 	]
 }

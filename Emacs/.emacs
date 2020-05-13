@@ -9,7 +9,7 @@
         ("melpa-stable" . "https://stable.melpa.org/packages/")))
 (setq package-list
       '(helm company yasnippet yasnippet-snippets
-             multiple-cursors vlf pdf-tools treemacs
+             multiple-cursors vlf pdf-tools neotree
              eglot lsp-mode company-lsp lsp-java markdown-mode auctex))
 (package-initialize)
 
@@ -33,6 +33,10 @@
 (global-set-key [f12] 'indent-region)
 (electric-pair-mode 1)
 
+;; neotree
+(require 'neotree)
+(global-set-key [f8] 'neotree-toggle)
+
 ;; multiple-cursors-mode
 (require 'multiple-cursors)
 (global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
@@ -47,9 +51,11 @@
 (windmove-default-keybindings)
 
 ;; company settings
+(require 'company)
 (add-hook 'after-init-hook 'global-company-mode)
 (setq company-idle-delay 0.1)
 (setq company-minimum-prefix-length 3)
+(delete 'company-clang company-backends)
 
 ;; yasnippet settings
 (yas-global-mode 1)
@@ -84,7 +90,8 @@
 ;; c++-mode + eglot
 (require 'eglot)
 (setq-default c-basic-offset 4)
-(add-to-list 'eglot-server-programs '((c++-mode c-mode) "clangd"))
+(add-to-list 'eglot-server-programs '(c-mode . ("clangd" "-header-insertion=never")))
+(add-to-list 'eglot-server-programs '(c++-mode . ("clangd" "-header-insertion=never")))
 (add-hook 'c-mode-hook 'eglot-ensure)
 (add-hook 'c++-mode-hook 'eglot-ensure)
 
@@ -105,18 +112,12 @@
 (add-hook 'LaTeX-mode-hook 'eglot-ensure)
 ;(add-hook 'LaTeX-mode-hook (lambda () (setq-local company-idle-delay 1)))
 
-;; Treemacs settings
-(require 'treemacs)
-(define-key treemacs-mode-map [mouse-1] #'treemacs-single-click-expand-action)
-
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(package-selected-packages
-   (quote
-    (irony smartparens company-lsp meghanada treemacs auctex pdf-tools edit-indirect markdown-mode irony-eldoc impatient-mode company-irony company-irony-c-headers yasnippet-snippets emmet-mode company-web helm vlf multiple-cursors company-anaconda))))
+ )
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

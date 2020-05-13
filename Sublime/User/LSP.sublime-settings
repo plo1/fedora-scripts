@@ -1,0 +1,15 @@
+{
+	"clients":
+	{
+		"clangd":
+		{
+			"enabled": true,
+			"command":
+			[
+				"clangd",
+				"-header-insertion=never",
+				"-index"
+			]
+		}
+	}
+}
