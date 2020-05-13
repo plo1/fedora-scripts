@@ -25,13 +25,14 @@
 (load-theme 'tsdh-dark)
 (setq make-backup-files nil)
 (setq auto-save-timeout 300)
-(setq-default indent-tabs-mode nil)
 (setq inhibit-startup-screen t)
 (setq show-paren-delay 0)
 (show-paren-mode 1)
 (global-set-key (kbd "s-t") 'shell)
 (global-set-key [f12] 'indent-region)
 (electric-pair-mode 1)
+(setq-default tab-width 4)
+(setq-default indent-tabs-mode nil)
 
 ;; treemacs
 (require 'treemacs)
