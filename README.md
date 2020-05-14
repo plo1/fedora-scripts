@@ -23,9 +23,9 @@ Contains my setup for my computer
 
 ## powertop2tuned
 
-1. Download `powertop`, `tuned-utils`, and `linux-tools-generic-hwe-18.04`.
+1. Download `powertop`, `tuned-utils`, and `linux-tools-generic-hwe-20.04`.
 
-        sudo apt install linux-tools-generic-hwe-18.04 powertop tuned-utils
+        sudo apt install linux-tools-generic-hwe-20.04 powertop tuned-utils
 
 2. Create a powersaving profile for your laptop.
 
