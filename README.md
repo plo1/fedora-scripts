@@ -68,7 +68,7 @@ Contains my setup for my computer
 ### System Dependencies
 
     # For C/C++ completions
-    sudo apt install clangd-9
+    sudo apt install clangd
     # For LATEX
     sudo apt install texlive-full
     # For LATEX completions
