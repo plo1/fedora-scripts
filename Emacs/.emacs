@@ -10,7 +10,8 @@
 (setq package-list
       '(helm company yasnippet yasnippet-snippets
              multiple-cursors vlf pdf-tools treemacs
-             eglot lsp-mode company-lsp lsp-java markdown-mode auctex))
+             eglot lsp-mode company-lsp lsp-java 
+             markdown-mode auctex rust-mode))
 (package-initialize)
 
 ;; fetch the list of packages available 
@@ -58,6 +59,14 @@
 (setq company-minimum-prefix-length 3)
 (delete 'company-clang company-backends)
 
+;; eglot
+(require 'eglot)
+
+;; lsp + company-lsp
+(require 'lsp-mode)
+(require 'company-lsp)
+(push 'company-lsp company-backends)
+
 ;; yasnippet settings
 (yas-global-mode 1)
 (setq yas-triggers-in-field t)
@@ -87,9 +96,12 @@
 (setq python-shell-interpreter "/usr/bin/python3")
 (add-hook 'python-mode-hook 'eglot-ensure)
 
+;; rust-mode + eglot
+(require 'rust-mode)
+(add-hook 'rust-mode-hook 'eglot-ensure)
+
 ;; c-mode + eglot
 ;; c++-mode + eglot
-(require 'eglot)
 (setq-default c-basic-offset 4)
 (add-to-list 'eglot-server-programs '(c-mode . ("clangd" "-header-insertion=never")))
 (add-to-list 'eglot-server-programs '(c++-mode . ("clangd" "-header-insertion=never")))
@@ -97,9 +109,6 @@
 (add-hook 'c++-mode-hook 'eglot-ensure)
 
 ;; java-mode + lsp-mode
-(require 'company-lsp)
-(push 'company-lsp company-backends)
-(require 'lsp-mode)
 (require 'lsp-java)
 (add-hook 'java-mode-hook #'lsp)
 
@@ -112,16 +121,3 @@
 (add-hook 'TeX-after-compilation-finished-functions #'TeX-revert-document-buffer)
 (add-hook 'LaTeX-mode-hook 'eglot-ensure)
 ;(add-hook 'LaTeX-mode-hook (lambda () (setq-local company-idle-delay 1)))
-
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
