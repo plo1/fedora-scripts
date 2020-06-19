@@ -29,7 +29,7 @@
 (setq inhibit-startup-screen t)
 (setq show-paren-delay 0)
 (show-paren-mode 1)
-(global-set-key (kbd "s-t") 'shell)
+(global-set-key (kbd "M-t") 'shell)
 (global-set-key [f12] 'indent-region)
 (electric-pair-mode 1)
 (setq-default tab-width 4)
@@ -120,4 +120,7 @@
       TeX-source-correlate-start-server t)
 (add-hook 'TeX-after-compilation-finished-functions #'TeX-revert-document-buffer)
 (add-hook 'LaTeX-mode-hook 'eglot-ensure)
-;(add-hook 'LaTeX-mode-hook (lambda () (setq-local company-idle-delay 1)))
+;;(add-hook 'LaTeX-mode-hook (lambda () (setq-local company-idle-delay 1)))
+
+
+
