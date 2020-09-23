@@ -11,7 +11,7 @@
       '(helm company yasnippet yasnippet-snippets
              multiple-cursors vlf pdf-tools treemacs
              eglot lsp-mode company-lsp lsp-java 
-             markdown-mode auctex rust-mode))
+             markdown-mode auctex rust-mode yaml-mode))
 (package-initialize)
 
 ;; fetch the list of packages available 
@@ -122,5 +122,11 @@
 (add-hook 'LaTeX-mode-hook 'eglot-ensure)
 ;;(add-hook 'LaTeX-mode-hook (lambda () (setq-local company-idle-delay 1)))
 
+;; yaml
+(require 'yaml-mode)
+(add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode))
+(add-hook 'yaml-mode-hook
+    '(lambda ()
+       (define-key yaml-mode-map "\C-m" 'newline-and-indent)))
 
 
